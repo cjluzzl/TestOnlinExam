@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+	<meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+	<title>中国计量大学理学院在线考试系统</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
+    <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
+
+</head>
+<body>
+<section class="headerwrap ">
+    <header>
+		<div  class=" header">
+
+            {% if request.user.is_authenticated %}
+                <div class="top">
+				    <div class="wp">
+					<div class="fl"><p>服务电话：<b>15068895421</b></p></div>
+					<!--登录后跳转-->
+
+                    <div class="personal">
+                            <dl class="user fr">
+                                <dd>{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
+                                <dt><img width="20" height="20" src="/{{ MEDIA_URL }}{{ user.image }}"/></dt>
+                            </dl>
+                            <div class="userdetail">
+                            	<dl>
+	                                <dt><img width="80" height="80" src="/{{ MEDIA_URL }}{{ user.image }}"/></dt>
+	                                <dd>
+	                                    <h2>{{ user.nick_name }}</h2>
+	                                    <p>{{ user.username }}</p>
+	                                </dd>
+                                </dl>
+                                <div class="btn">
+	                                <a class="personcenter fl" href="{% url 'user_center'%}">进入个人中心</a>
+	                                <a class="fr" href="">退出</a>
+                                </div>
+                            </div>
+                        </div>
+				</div>
+			    </div>
+            {% else %}
+                 <div class="top">
+				<div class="wp">
+					<div class="fl"><p>服务电话：<b>15068895421</b></p></div>
+					<!--登录后跳转-->
+
+
+                        <a style="color:white" class="fr registerbtn" href="{% url 'register' %}">注册</a>
+                        <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
+				</div>
+			</div>
+            {% endif %}
+            <div class="middle">
+                <div class="wp">
+                    <a href="http://lxy.cjlu.edu.cn"><img class="fl" src="{% static 'images/lxy_logo.jpg'%}"/></a>
+
+                </div>
+            </div>
+            
+            
+			<nav>
+				<div class="nav">
+					<div class="wp">
+						<ul>
+							<li class="active" ><a href="/">首页</a></li>
+							<li >
+								<a href="#">
+									公开课<img class="hot" src="{% static 'images/nav_hot.png'%}">
+								</a>
+							</li>
+							<li >
+								<a href="#">授课教师</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+            
+			</div>
+    </header>
+</section>
+<!--crumbs start-->
+
+
+
+    <div class="banner">
+			<div class="wp">
+				<div class="fl">
+					<div class="imgslide">
+						<ul class="imgs">
+                            
+                            <li>
+                                    <a href="http://www.cjluzzl.cn">
+                                        <img width="1200" height="478" src="{% static 'images/banner/2017/03/banner0.jpg' %}" />
+                                    </a>
+                                </li>
+                            
+                            <li>
+                                    <a href="http://www.cjluzzl.cn">
+                                        <img width="1200" height="478" src="{% static 'images/banner/2017/03/banner1.jpg' %}" />
+                                    </a>
+                                </li>
+                            
+                            <li>
+                                    <a href="http://www.cjluzzl.cn">
+                                        <img width="1200" height="478" src="{% static 'images/banner/2017/03/banner2.jpg' %}" />
+                                    </a>
+                                </li>
+                            
+                            <li>
+                                    <a href="http://www.cjluzzl.cn">
+                                        <img width="1200" height="478" src="{% static 'images/banner/2017/03/banner3.jpg' %}" />
+                                    </a>
+                                </li>
+                            
+
+						</ul>
+					</div>
+					<div class="unslider-arrow prev"></div>
+					<div class="unslider-arrow next"></div>
+				</div>
+
+				</div>
+
+
+			</div>
+
+<footer>
+		<div class="footer">
+			<div class="wp">
+				<ul class="cont">
+					<!--<li class="logo"><a href=""><img src="/static/images/footlogo.png"/></a></li>-->
+					<li class="code"><img src="/static/images/code.jpg"/><p class="center">扫描关注微信</p></li>
+					<li class="third"><img class="fl" src="/static/images/tell.png"/><p class="tell">15068895321</p><p class="time">周一至周日 9:00-0:30</p></li>
+				</ul>
+
+			</div>
+			<p class="line"></p>
+			<div class="wp clear">
+                <span class="fl">2016-2017 <a href="http://www.cjluzzl.cn">www.cjluzzl.cn</a> 中国计量大学理学院 Power by cjluzzl 保留所有权利</span>
+                <span class="fr">copyright &copy; 2016 ICP备案证书号：浙ICP备16012186号-2</span>
+			</div>
+		</div>
+	</footer>
+
+<section>
+    <ul class="sidebar">
+        <li class="qq">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1052870733&site=qq&menu=yes"></a>
+        </li>
+        <li class="totop"></li>
+    </ul>
+</section>
+<script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/plugins/laydate/laydate.js' %}" type="text/javascript" ></script>
+<script src="{% static 'js/plugins/layer/layer.js' %}"></script>
+<script src="{% static 'js/plugins/queryCity/js/public.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/jquery.scrollLoading.js' %}"  type="text/javascript"></script>
+<script src="{% static 'js/deco-common.js' %}"  type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+</body>
+</html>

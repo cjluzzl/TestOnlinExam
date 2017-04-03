@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script type="text/javascript">
+        function submitForm() {
+            document.getElementById("form1").submit();
+        }
+    </script>
+    <style>
+        .begin {
+            width: 200px;
+            margin: 0 auto;
+            font: 20px/32px "Micorosoft Yahei";
+        }
+
+        #box1 {
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        #box1 p {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        #box1 lable {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        #box2 {
+            text-align: center;
+        }
+
+        .tj {
+            font-size: 16px;
+            margin: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<section class="headerwrap ">
+    <header>
+        <div class=" header">
+
+            {% if request.user.is_authenticated %}
+                <div class="top">
+                    <div class="wp">
+                        <div class="fl"><p>服务电话：<b>15068895421</b></p></div>
+                        <!--登录后跳转-->
+
+                        <div class="personal">
+                            <dl class="user fr">
+                                <dd>{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
+                                <dt><img width="20" height="20" src="/{{ MEDIA_URL }}{{ user.image }}"/></dt>
+                            </dl>
+                            <div class="userdetail">
+                                <dl>
+                                    <dt><img width="80" height="80" src="/{{ MEDIA_URL }}{{ user.image }}"/></dt>
+                                    <dd>
+                                        <h2>{{ user.nick_name }}</h2>
+                                        <p>{{ user.username }}</p>
+                                    </dd>
+                                </dl>
+                                <div class="btn">
+                                    <a class="personcenter fl" href="{% url 'user_center' %}">进入个人中心</a>
+                                    <a class="fr" href="">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="top">
+                    <div class="wp">
+                        <div class="fl"><p>服务电话：<b>15068895421</b></p></div>
+                        <!--登录后跳转-->
+
+
+                        <a style="color:white" class="fr registerbtn" href="{% url 'register' %}">注册</a>
+                        <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="middle">
+                <div class="wp">
+                    <a href="http://lxy.cjlu.edu.cn"><img class="fl" src="{% static 'images/lxy_logo.jpg' %}"/></a>
+
+                </div>
+            </div>
+
+        </div>
+    </header>
+</section>
+
+
+<div class="begin"><p>成功进入试题页面</p></div>
+
+
+<div>
+
+    {% if request.user.is_authenticated %}
+        <session>
+            <form action="" method="POST" id="form1" name="hhhhh">
+                {% csrf_token %}
+                {% for question_now in question %}
+
+                    <div id="box1">
+                        {% if question_now.questionType == 'xz' %}
+                        <from id="{{ question_now.id }}">
+
+                            <p>{{ question_now.id }}.({{ question_now.questionType}}) {{ question_now.content }}</p>
+                            <input type="hidden" value="{{ question_now.id }}">
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="A"/>{{ question_now.choice_a }}
+                            </label><br/>
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="B"/>{{ question_now.choice_b }}
+                            </label><br/>
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="C"/>{{ question_now.choice_c }}
+                            </label><br/>
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="D"/>{{ question_now.choice_d }}
+                            </label><br/>
+                        </from>
+                        {% endif %}
+                        {% if question_now.questionType == 'pd' %}
+                        <from id="{{ question_now.id }}">
+
+                            <p>{{ question_now.id }}.({{ question_now.questionType}}) {{ question_now.content }}</p>
+                            <input type="hidden" value="{{ question_now.id }}">
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="True"/>{{ question_now.boolt }}
+                            </label><br/>
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="False"/>{{ question_now.boolf }}
+                            </label><br/>
+                        </from>
+                        {% endif %}
+
+                    </div>
+
+                    <hr/>
+                {% endfor %}
+                <div id="box2">
+                    <input name="tijiao" type="submit" value="提交" onclick="submitForm()" id="tj" class="tj"/>
+                </div>
+
+            </form>
+
+        </session>
+    {% else %}
+        <div>
+            <script type="text/javascript">
+                alert("请登录！！！");
+            </script>
+            <h1> 亲，想做题，先登录奥！</h1>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
