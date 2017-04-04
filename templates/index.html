@@ -28,11 +28,11 @@
                     <div class="personal">
                             <dl class="user fr">
                                 <dd>{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
-                                <dt><img width="20" height="20" src="/{{ MEDIA_URL }}{{ user.image }}"/></dt>
+                                <dt><img width="20" height="20" src="/{{ user.image }}"/></dt>
                             </dl>
                             <div class="userdetail">
                             	<dl>
-	                                <dt><img width="80" height="80" src="/{{ MEDIA_URL }}{{ user.image }}"/></dt>
+	                                <dt><img width="80" height="80" src="/{{ user.image }}"/></dt>
 	                                <dd>
 	                                    <h2>{{ user.nick_name }}</h2>
 	                                    <p>{{ user.username }}</p>
@@ -40,7 +40,7 @@
                                 </dl>
                                 <div class="btn">
 	                                <a class="personcenter fl" href="{% url 'user_center'%}">进入个人中心</a>
-	                                <a class="fr" href="">退出</a>
+	                                <a class="fr" href="{% url 'logout' %}">退出</a>
                                 </div>
                             </div>
                         </div>
@@ -73,11 +73,11 @@
 							<li class="active" ><a href="/">首页</a></li>
 							<li >
 								<a href="#">
-									公开课<img class="hot" src="{% static 'images/nav_hot.png'%}">
+									在线课程<img class="hot" src="{% static 'images/nav_hot.png'%}">
 								</a>
 							</li>
 							<li >
-								<a href="#">授课教师</a>
+								<a href="#">资料下载</a>
 							</li>
 						</ul>
 					</div>

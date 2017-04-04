@@ -44,24 +44,25 @@ class Question(models.Model):
 
     def __unicode__(self):
         model = Question
-        return "{0}(题干:{1} | 正确答案:{2} )".format(self.course.name,self.content[:int(len(self.content)/2)],self.answer)
+        return "{0}(题干:{1} | 正确答案:{2} )".format(self.course.name, self.content, self.answer)
 
 
 class PaperList(models.Model):
     course = models.ForeignKey(CourseList, verbose_name=u"所属课程")
-    name = models.CharField(max_length=100,verbose_name=u"试卷名",default=u"")
-    is_allow = models.BooleanField(verbose_name=u"是否启用",default=False)
-    add_time = models.DateField(default=datetime.now,verbose_name=u"添加时间")
+    name = models.CharField(max_length=100, verbose_name=u"试卷名", default=u"")
+    is_allow = models.BooleanField(default=False, verbose_name=u"是否启用")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:
         verbose_name = u"试卷列表"
         verbose_name_plural = verbose_name
 
     def __unicode__(self):
-        return u"{0}(试卷名称:{1} | 使用状态:{2})".format(self.course.name,self.name,self.is_allow)
+        return u"{0}(试卷名称:{1} | 使用状态:{2})".format(self.course.name, self.name, self.is_allow)
 
 
 class Paper(models.Model):
+    course = models.ForeignKey(CourseList, verbose_name=u"所属课程", default=1)
     question = models.ForeignKey(Question, verbose_name=u"题目")
     paper_name = models.ForeignKey(PaperList, verbose_name=u"试卷名称")
     add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")

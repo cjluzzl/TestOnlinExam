@@ -30,9 +30,9 @@ class PaperListAdmin(object):
 
 
 class PaperAdmin(object):
-    list_display = ['paper_name', 'question', 'add_time']
-    search_fields = ['paper_name__name','paper_name__id','paper_name__is_allow','question__id','question__content', 'question__answer']
-    list_filter = ['paper_name', 'question__id','question__content','add_time','paper_name__name',]
+    list_display = ['course', 'paper_name', 'question', 'add_time']
+    search_fields = ['course__name', 'paper_name__name', 'paper_name__id','paper_name__is_allow','question__id','question__content', 'question__answer']
+    list_filter = ['course', 'paper_name', 'question__id', 'question__content','add_time','paper_name__name',]
 
 
 xadmin.site.register(CourseList, CourseListAdmin)

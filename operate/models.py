@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from users.models import UserProfile
-from coures.models import Paper, CourseList
+from coures.models import Paper, CourseList, PaperList
 from datetime import datetime
 
 
@@ -51,7 +51,7 @@ class UserAnswerLog(models.Model):
 
 class UserScore(models.Model):
     user = models.ForeignKey(UserProfile, verbose_name=u"用户")
-    paper = models.ForeignKey(Paper, verbose_name=u"试卷")
+    paper = models.ForeignKey(PaperList, verbose_name=u"试卷")
     total = models.IntegerField(verbose_name=u"总分", default=0)
     add_time = models.DateField(verbose_name=u"录入时间",default=datetime.now)
 

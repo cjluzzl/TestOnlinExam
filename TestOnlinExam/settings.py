@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'captcha',
 ]
 
+
+
 #分页设置
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 10, #显示的页数
@@ -165,4 +167,5 @@ EMAIL_FROM = "cjluzzl@sina.com"
 
 
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

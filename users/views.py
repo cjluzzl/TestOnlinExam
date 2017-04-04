@@ -1,12 +1,12 @@
 # -*- coding:utf-8 -*-
 
 from django.shortcuts import render
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
 from .models import UserProfile, EmailRevifyRecord, AllowedUser
 from django.db.models import Q #支持后面的并集查询
 from django.views.generic.base import View
-from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm
+from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm, UserInfoForm
 from django.contrib.auth.hashers import make_password
 from utils.send_mail import send_register_email
 
@@ -32,8 +32,9 @@ class CustomBackend(ModelBackend):
             return None
 
 
-#调试完成
+
 class RegisterView(View):
+    """注册模块,调试完成"""
     def get(self, request):
         register_form = RegisterForm()
         return render(request, "register.html", {"register_form": register_form, "title": title})
@@ -106,6 +107,12 @@ class LoginView(View):
             return render(request, "login.html", {"login_form": login_form})
 
 
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return render(request, "login.html", {"msg":u"您已经成功退出登录状态", })
+
+
 #调试完成
 class ForgetPwdView(View):
     def get(self, request):
@@ -138,6 +145,7 @@ class ResetView(View):
         else:
             return render(request, "active_fail.html")
 
+
 #调试完成
 class ModifyPwdView(View):
     def post(self, request):
@@ -160,8 +168,15 @@ class ModifyPwdView(View):
 
 #用户中心
 class UserCenterView(View):
-    def get(self,request):
-        return render(request,"usercenter-info.html",{"title":title,"phoneNumber":phoneNumber})
+    def get(self, request):
+        user = request.user
+        user_center_form = UserInfoForm()
+        user_center_form.nick_name = user.nick_name
+        user_center_form.birthday = user.birthday
+        user_center_form.gender = user.gender
+        user_center_form.mobile = user.mobile
+        return render(request, "usercenter-info.html",
+                      {"user_form": user_center_form, "title": title, "phoneNumber": phoneNumber})
 
 
 #404调试完成

@@ -51,7 +51,7 @@ class PaperView(View):
         # 记录用户
         user_score.user = request.user
         # 记录试卷名
-        user_score.paper = Paper.objects.get(pk=paper_id)
+        user_score.paper = PaperList.objects.get(pk=paper_id)
         # 记录做题时间
         user_score.add_time = datetime.now()
         # 显示提交的题目编号列表
@@ -80,7 +80,7 @@ class PaperView(View):
         user_score.total = temp_score
         temp_score = 0
         user_score.save()
-        return render(request,"score.html", {"score": user_score.total})
+        return render(request, "score.html", {"score": user_score.total})
 
 
 
