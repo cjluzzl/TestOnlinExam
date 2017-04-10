@@ -18,10 +18,13 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from django.views.generic import TemplateView
+from django.views.static import serve
 import xadmin
 from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, \
     ForgetPwdView, ResetView, ModifyPwdView, UserCenterView
-from operate.views import PaperView, PaperListView
+from operate.views import PaperView, PaperListView, CourseListView, DownloadFunView
+from TestOnlinExam.settings import MEDIA_ROOT
+
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -37,7 +40,11 @@ urlpatterns = [
     url(r'^user_center/$', UserCenterView.as_view(), name="user_center"),
     url(r'^paper/(?P<paper_id>.*)/$', PaperView.as_view(), name="paper"),
     url(r'^paperlist/$', PaperListView.as_view(), name="paper_list"),
+    # 配置媒体文件显示的view
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
 
+    url(r'course_list/$', CourseListView.as_view(), name="course_list_online_study"),
+    url(r'download_info/$', DownloadFunView.as_view(), name="download"),
 ]
 
 # 全局404页面配置
