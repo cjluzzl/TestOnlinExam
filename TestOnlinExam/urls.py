@@ -23,7 +23,7 @@ import xadmin
 from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, \
     ForgetPwdView, ResetView, ModifyPwdView, UserCenterView
 from operate.views import PaperView, PaperListView, CourseListView, DownloadFunView
-from TestOnlinExam.settings import MEDIA_ROOT
+from TestOnlinExam.settings import MEDIA_ROOT, STATIC_ROOT
 
 
 urlpatterns = [
@@ -45,9 +45,10 @@ urlpatterns = [
 
     url(r'course_list/$', CourseListView.as_view(), name="course_list_online_study"),
     url(r'download_info/$', DownloadFunView.as_view(), name="download"),
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": STATIC_ROOT})
 ]
 
 # 全局404页面配置
-handler404='users.views.page_not_found';
+handler404 = 'users.views.page_not_found';
 # 全局500页面配置
-handler500='users.views.page_error';
+handler500 = 'users.views.page_error';
