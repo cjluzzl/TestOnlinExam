@@ -86,3 +86,13 @@ class PaperView(View):
             user_score.total = temp_score
             user_score.save()
             return render(request, "score.html", {"score": user_score.total, "title": title})
+
+
+class CourseListView(View):
+    def get(self, request):
+        return render(request, "online_course_list.html");
+
+
+class DownloadFunView(View):
+    def get(self, request):
+        return render(request, "download.html");
