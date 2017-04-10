@@ -9,7 +9,23 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
+    <style>
+        #mydef {
+            text-align: center;
+        }
 
+        .finish {
+            font-size: 30px;
+            margin: auto;
+        }
+
+        .score {
+            font-size: 50px;
+            color: red;
+        }
+
+
+    </style>
 </head>
 <body>
 <section class="headerwrap ">
@@ -69,7 +85,7 @@
                         <ul>
                             <li class="active"><a href="/">首页</a></li>
                             <li>
-                                <a href="#">
+                                <a href="{% url 'course_list_online_study' %}">
                                     在线课程<img class="hot" src="{% static 'images/nav_hot.png' %}">
                                 </a>
                             </li>
@@ -85,9 +101,21 @@
     </header>
 </section>
 
+<div id="mydef">
+    <h1 class="finish">你已经完成考试: {{ title }}</h1>
+    <h1 class="score">你的成绩为: {{ score }}</h1>
 
-<h1>你已经完成考试: {{ title }}</h1>
-<h1>你的成绩为: {{ score }}</h1>
+</div>
 
+
+<script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/plugins/laydate/laydate.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/layer/layer.js' %}"></script>
+<script src="{% static 'js/plugins/queryCity/js/public.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/jquery.scrollLoading.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/deco-common.js' %}" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 </body>
 </html>

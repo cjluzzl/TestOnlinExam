@@ -37,11 +37,11 @@
                         <div class="personal">
                             <dl class="user fr">
                                 <dd>{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
-                                <dt><img width="20" height="20" src="/{{ user.image }}"/></dt>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
                             </dl>
                             <div class="userdetail">
                                 <dl>
-                                    <dt><img width="80" height="80" src="/{{ user.image }}"/></dt>
+                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
                                     <dd>
                                         <h2>{{ user.nick_name }}</h2>
                                         <p>{{ user.username }}</p>
@@ -96,6 +96,8 @@
         </div>
     </header>
 </section>
+
+
 <div id="box1">
     {% for i in papers %}
         <p>试卷编号为：{{ i.id }}</p>
@@ -123,6 +125,16 @@
         </div>
     </div>
 </footer>
+
+<script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/plugins/laydate/laydate.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/layer/layer.js' %}"></script>
+<script src="{% static 'js/plugins/queryCity/js/public.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/jquery.scrollLoading.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/deco-common.js' %}" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
 </body>
 </html>

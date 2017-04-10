@@ -28,11 +28,11 @@
                     <div class="personal">
                             <dl class="user fr">
                                 <dd>{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
-                                <dt><img width="20" height="20" src="/{{ user.image }}"/></dt>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
                             </dl>
                             <div class="userdetail">
                             	<dl>
-	                                <dt><img width="80" height="80" src="/{{ user.image }}"/></dt>
+                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
 	                                <dd>
 	                                    <h2>{{ user.nick_name }}</h2>
 	                                    <p>{{ user.username }}</p>
@@ -72,12 +72,12 @@
 						<ul>
 							<li class="active" ><a href="/">首页</a></li>
 							<li >
-								<a href="#">
+                                <a href="{% url 'course_list_online_study' %}">
 									在线课程<img class="hot" src="{% static 'images/nav_hot.png'%}">
 								</a>
 							</li>
 							<li >
-								<a href="#">资料下载</a>
+                                <a href="{% url 'download' %}">资料下载</a>
 							</li>
 						</ul>
 					</div>
