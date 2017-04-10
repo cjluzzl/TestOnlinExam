@@ -41,11 +41,11 @@
                         <div class="personal">
                             <dl class="user fr">
                                 <dd>{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
-                                <dt><img width="20" height="20" src="/{{ user.image }}"/></dt>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
                             </dl>
                             <div class="userdetail">
                                 <dl>
-                                    <dt><img width="80" height="80" src="/{{ user.image }}"/></dt>
+                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
                                     <dd>
                                         <h2>{{ user.nick_name }}</h2>
                                         <p>{{ user.username }}</p>
