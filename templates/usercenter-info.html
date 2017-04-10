@@ -79,7 +79,7 @@
         <div class="wp">
             <ul  class="crumbs">
                 <li><a href="/">首页</a>></li>
-                <li><a href="/user_center">个人中心</a>></li>
+                <li><a href="{% url 'user_center' %}">个人中心</a>></li>
                 <li>个人资料</li>
             </ul>
         </div>
@@ -90,8 +90,7 @@
 	<div class="left">
         <ul>
             <li class="active2"><a href="usercenter-info.html">个人资料</a></li>
-            <li ><a href="usercenter-mycourse.html">我的考试</a></li>
-            <li ><a href="usercenter-mycourse.html">我的成绩</a></li>
+            <li><a href="{% url 'paper_list' %}">我的考试</a></li>
         </ul>
 	</div>
 
@@ -120,21 +119,26 @@
 				<form class="perinform" id="jsEditUserForm" autocomplete="off">
 					<ul class="right">
 						<li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：
-                            <input type="text" name="nick_name" id="nick_name" value="{{ user_form.nick_name.value }}" maxlength="10">
+                            <input type="text" name="nick_name" id="nick_name" value="{{ user.nick_name }}"
+                                   maxlength="10"/>
                             <i class="error-tips"></i>
                         </li>
 						<li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
-                           <input type="text" id="birth_day" name="birthday" {% if  user_form.birthday.value %}value="{{ user_form.birthday }}" {% else %}
+                            <input type="text" id="birth_day" name="birthday" {% if  user.birthday %}
+                                   value="{{ user.birthday }}" {% else %}
                                   value="yyyy-mm-dd"{% endif %}
                                   readonly="readonly"/>
                             <i class="error-tips"></i>
 						</li>
 						<li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"  name="gender" value="male" {% if user_form.gender == "male" %} checked="checked" {% endif %}>男</label>
-							<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female" {% if user_form.gender == "female" %} checked="checked" {% endif %}>女</label>
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="male"
+                                    {% if user.gender == "male" %} checked="checked" {% endif %}>男</label>
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female"
+                                    {% if user.gender == "female" %} checked="checked" {% endif %}>女</label>
 						</li>
 						<li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：
-                            <input type="text" name="mobile" id="mobile" placeholder="请输入你的手机号码" value="{{ user_form.mobile.value }}" maxlength="11">
+                            <input type="text" name="mobile" id="mobile" placeholder="请输入你的手机号码"
+                                   value="{{ user.mobile }}" maxlength="11">
                         </li>
 						<li class="button heibtn">
 							<input type="button" id="jsEditUserBtn" value="保存">

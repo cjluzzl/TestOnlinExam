@@ -72,4 +72,11 @@ class Paper(models.Model):
         verbose_name_plural = verbose_name
 
     def __unicode__(self):
-        return u"{0} ({1})".format(self.paper_name,self.question.content)
+        return u"{0} ({1})".format(self.paper_name, self.question.content)
+
+#
+# class Down_info(models.Model):
+#     #资料下载页面
+#     name = models.CharField(verbose_name=u"资料名", default=u"资料", max_length=100)
+#     add_time = models.DateField(verbose_name=u"添加时间", default = datetime.now)
+#     file = models.FileField(verbose_name=u"文件")

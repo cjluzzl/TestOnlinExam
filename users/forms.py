@@ -32,7 +32,7 @@ class ModifyPwdForm(forms.Form):
 
 
 class UserInfoForm(forms.Form):
-    nick_name = forms.CharField(required=True,max_length=20)
+    nick_name = forms.CharField(required=True, max_length=20)
     birthday = forms.DateField(required=True)
     gender = forms.ChoiceField(choices=(("male", u"男"), ("female", u"女")), required=True)
     address = forms.CharField(required=True, max_length=50)

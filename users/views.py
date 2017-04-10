@@ -170,22 +170,26 @@ class ModifyPwdView(View):
 class UserCenterView(View):
     def get(self, request):
         user = request.user
-        user_center_form = UserInfoForm()
-        user_center_form.nick_name = user.nick_name
-        user_center_form.birthday = user.birthday
-        user_center_form.gender = user.gender
-        user_center_form.mobile = user.mobile
+        user_form = UserInfoForm()
+        user_form.nick_name = user.nick_name
+        user_form.birthday = user.birthday
+        user_form.gender = user.gender
+        user_form.mobile = user.mobile
+        print user.nick_name
+        print user.birthday
+        print user.gender
+        print user.mobile
         return render(request, "usercenter-info.html",
-                      {"user_form": user_center_form, "title": title, "phoneNumber": phoneNumber})
+                      {"user_form": user_form, "title": title, "phoneNumber": phoneNumber})
 
 
 #404调试完成
 def page_not_found(request):
     # 全局404处理函数
     from django.shortcuts import render_to_response
-    response=render_to_response('404.html', {"title":title});
-    response.status_code=404;
-    return response;
+    response = render_to_response('404.html', {"title": title})
+    response.status_code = 404
+    return response
 
 
 #500调试完成

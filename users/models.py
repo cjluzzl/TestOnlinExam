@@ -64,7 +64,7 @@ class Banner(models.Model):
 
 
 class AllowedUser(models.Model):
-    username = models.CharField(max_length=10,verbose_name=u"学号")
+    username = models.CharField(max_length=10, verbose_name=u"学号")
 
     class Meta:
         verbose_name = u"允许学号"

@@ -19,8 +19,9 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from django.views.generic import TemplateView
 import xadmin
-from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView, UserCenterView
-from operate.views import PaperView
+from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, \
+    ForgetPwdView, ResetView, ModifyPwdView, UserCenterView
+from operate.views import PaperView, PaperListView
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -35,6 +36,7 @@ urlpatterns = [
     url(r'^modify_pwd/$', ModifyPwdView.as_view(), name="modify_pwd"),
     url(r'^user_center/$', UserCenterView.as_view(), name="user_center"),
     url(r'^paper/(?P<paper_id>.*)/$', PaperView.as_view(), name="paper"),
+    url(r'^paperlist/$', PaperListView.as_view(), name="paper_list"),
 
 ]
 
