@@ -23,8 +23,8 @@ import xadmin
 from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, \
     ForgetPwdView, ResetView, ModifyPwdView, UserCenterView
 from operate.views import PaperView, PaperListView, CourseListView, DownloadFunView
-from TestOnlinExam.settings import MEDIA_ROOT, STATIC_ROOT
-
+from TestOnlinExam.settings import MEDIA_ROOT, STATIC_ROOT, STATIC_URL
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -45,8 +45,8 @@ urlpatterns = [
 
     url(r'course_list/$', CourseListView.as_view(), name="course_list_online_study"),
     url(r'download_info/$', DownloadFunView.as_view(), name="download"),
-    url(r'^media/(?P<path>.*)$', serve, {"document_root": STATIC_ROOT})
-]
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT}),
+]  # + static(STATIC_URL, document_root=STATIC_ROOT)
 
 # 全局404页面配置
 handler404 = 'users.views.page_not_found';
