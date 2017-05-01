@@ -58,7 +58,6 @@ INSTALLED_APPS = [
 PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 10, #显示的页数
     'MARGIN_PAGES_DISPLAYED': 2, #前后的页数
-
     'SHOW_FIRST_PAGE_WHEN_INVALID': True,#如果不合法时是不是显示第一个页面
 }
 
@@ -70,7 +69,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -166,7 +165,6 @@ STATICFILES_DIRS = (
 
 )
 
-print STATICFILES_DIRS
 EMAIL_HOST = "smtp.sina.com"
 EMAIL_PORT = 25
 EMAIL_HOST_USER = "cjluzzl@sina.com"
@@ -180,3 +178,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'mystatic')
+
+FILE_UPLOAD_HANDLERS = (
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+)

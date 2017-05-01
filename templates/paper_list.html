@@ -100,8 +100,7 @@
 
 <div id="box1">
     {% for i in papers %}
-        <p>试卷编号为：{{ i.id }}</p>
-        <p>试卷名称为：<a href="{% url 'paper' i.id %}">{{ i.course.name }}:{{ i.name }}</a></p>
+        <p>试卷名称：<a href="{% url 'paper' i.id %}">{{ i.course.name }}:{{ i.name }}</a></p>
     {% endfor %}
 </div>
 
@@ -120,7 +119,7 @@
         </div>
         <p class="line"></p>
         <div class="wp clear">
-            <span class="fl">2016-2017 <a href="http://www.cjluzzl.cn">www.cjluzzl.cn</a> 中国计量大学理学院 Power by cjluzzl 保留所有权利</span>
+            <span class="fl">2016-2017 <a href="https://www.cjluzzl.cn" style="color: #000">www.cjluzzl.cn</a> 中国计量大学理学院 Power by cjluzzl 保留所有权利</span>
             <span class="fr">copyright &copy; 2016 ICP备案证书号：浙ICP备16012186号-2</span>
         </div>
     </div>

@@ -1,15 +1,149 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>该功能正在研发中</title>
-    <script type="text/javascript">
+    <title>资料下载</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
+    <style>
+        #box1 {
+            width: 600px;
+            margin: 20px auto;
+        }
 
-        var title = document.title;
-        alert(title + "小主不要心急");
-    </script>
+        #box1 p {
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+
+    </style>
 </head>
 <body>
+<section class="headerwrap ">
+    <header>
+        <div class=" header">
 
+            {% if request.user.is_authenticated %}
+                <div class="top">
+                    <div class="wp">
+                        <div class="fl"><p>服务电话：<b>15068895421</b></p></div>
+                        <!--登录后跳转-->
+
+                        <div class="personal">
+                            <dl class="user fr">
+                                <dd>{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
+                            </dl>
+                            <div class="userdetail">
+                                <dl>
+                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
+                                    <dd>
+                                        <h2>{{ user.nick_name }}</h2>
+                                        <p>{{ user.username }}</p>
+                                    </dd>
+                                </dl>
+                                <div class="btn">
+                                    <a class="personcenter fl" href="{% url 'user_center' %}">进入个人中心</a>
+                                    <a class="fr" href="{% url 'logout' %}">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="top">
+                    <div class="wp">
+                        <div class="fl"><p>服务电话：<b>15068895421</b></p></div>
+                        <!--登录后跳转-->
+
+
+                        <a style="color:white" class="fr registerbtn" href="{% url 'register' %}">注册</a>
+                        <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="middle">
+                <div class="wp">
+                    <a href="http://lxy.cjlu.edu.cn"><img class="fl" src="{% static 'images/lxy_logo.jpg' %}"/></a>
+
+                </div>
+            </div>
+
+
+            <nav>
+                <div class="nav">
+                    <div class="wp">
+                        <ul>
+                            <li class="active"><a href="/">首页</a></li>
+                            <li>
+                                <a href="{% url 'download' 1 %}">资料下载</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+</section>
+
+
+<div id="box1">
+    {% for file in file_list %}
+        <p><a href="{{ MEDIA_URL }}{{ file.file_content }}" id="file{{ file.pk }}"
+              onclick="addNum({{ file.pk }})">{{ forloop.counter }}. {{ file.file_name }}</a></p>
+        <p>下载次数:{{ file.down_count }} 发布时间:{{ file.add_time }}</p>
+    {% endfor %}
+</div>
+
+
+<footer>
+    <div class="footer">
+        <div class="wp">
+            <ul class="cont">
+                <li class="code"><img src="/static/images/code.jpg"/>
+                    <p class="center">扫描关注微信</p></li>
+                <li class="third"><img class="fl" src="/static/images/tell.png"/>
+                    <p class="tell">15068895321</p>
+                    <p class="time">周一至周日 9:00-0:30</p></li>
+            </ul>
+
+        </div>
+        <p class="line"></p>
+        <div class="wp clear">
+            <span class="fl">2016-2017 <a href="http://www.cjluzzl.cn">www.cjluzzl.cn</a> 中国计量大学理学院 Power by cjluzzl 保留所有权利</span>
+            <span class="fr">copyright &copy; 2016 ICP备案证书号：浙ICP备16012186号-2</span>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/plugins/laydate/laydate.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/layer/layer.js' %}"></script>
+<script src="{% static 'js/plugins/queryCity/js/public.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/jquery.scrollLoading.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/deco-common.js' %}" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+<script type="application/javascript">
+
+    function addNum(a) {
+        $.ajax({
+            csrfmiddlewaretoken: '{{csrf_token}}',
+            type: "post",
+            dataType: "html",
+            url: "http://127.0.0.1:8000/downadd/",
+            data: {"file_id": a, csrfmiddlewaretoken: '{{csrf_token}}'}
+        });
+
+    }
+
+</script>
 </body>
 </html>

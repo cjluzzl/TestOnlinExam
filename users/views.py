@@ -197,5 +197,5 @@ def page_error(request):
     # 全局500处理函数
     from django.shortcuts import render_to_response
     response=render_to_response('500.html', {"title":title});
-    response.status_code=500;
-    return response;
+    response.status_code = 500
+    return response

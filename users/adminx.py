@@ -4,10 +4,22 @@ __date__ = "2017/3/26 15:10 "
 import xadmin
 from xadmin import views
 from .models import EmailRevifyRecord
-from .models import Banner, UserProfile, UserClass,AllowedUser
+from .models import Banner, UserProfile, UserClass, AllowedUser, FileStroe
 from xadmin.plugins.auth import UserAdmin
 from django.contrib.auth.models import User
 from xadmin.layout import Fieldset, Main, Side, Row, FormHelper
+
+
+class FileStroeAdmin(object):
+    """
+    file_name = models.CharField(max_length=100,verbose_name=u"文件名")
+    file_content = models.FileField(verbose_name=u"文件",upload_to="file/%Y/%m/%d")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"发布时间")
+    down_count = models.IntegerField(default=0,verbose_name=u"下载次数")
+    """
+    list_display = ['file_name', 'file_content', 'add_time', 'down_count']
+    search_fields = ['file_name', 'file_content', 'down_count']
+    list_filter = ['file_name', 'file_content', 'add_time', 'down_count']
 
 
 class UserClassAdmin(object):
@@ -52,7 +64,7 @@ class AllowedUserAdmin(object):
     list_filter = ['username']
 
 
-
+xadmin.site.register(FileStroe, FileStroeAdmin)
 #xadmin.site.unregister(User)
 xadmin.site.register(AllowedUser, AllowedUserAdmin)
 xadmin.site.register(UserClass, UserClassAdmin)

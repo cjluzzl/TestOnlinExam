@@ -54,6 +54,7 @@
                         <label>邮箱</label>
                         <input type="text" id="account" name="email" value="{{ forget_form.email.value }}" placeholder="邮箱" />
                     </div>
+
                     <div class="form-group captcha1 marb38 {% if forget_form.errors.password %}errorput{% endif %}">
                         <label>验&nbsp;证&nbsp;码</label>
                         {{ forget_form.captcha }}

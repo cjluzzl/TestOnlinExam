@@ -118,7 +118,7 @@
                         {% if question_now.questionType == 'xz' %}
                         <from id="{{ question_now.id }}">
 
-                            <p>{{ question_now.id }}.({{ question_now.questionType}}) {{ question_now.content }}</p>
+                            <p>{{ forloop.counter }}.({{ question_now.questionType }}) {{ question_now.content }}</p>
                             <input type="hidden" value="{{ question_now.id }}">
                             <label><input name="{{ question_now.id }}" type="radio"
                                           value="A"/>{{ question_now.choice_a }}
@@ -137,7 +137,7 @@
                         {% if question_now.questionType == 'pd' %}
                         <from id="{{ question_now.id }}">
 
-                            <p>{{ question_now.id }}.({{ question_now.questionType}}) {{ question_now.content }}</p>
+                            <p>{{ forloop.counter }}.({{ question_now.questionType }}) {{ question_now.content }}</p>
                             <input type="hidden" value="{{ question_now.id }}">
                             <label><input name="{{ question_now.id }}" type="radio"
                                           value="True"/>{{ question_now.boolt }}
@@ -184,7 +184,7 @@
 			</div>
 			<p class="line"></p>
 			<div class="wp clear">
-                <span class="fl">2016-2017 <a href="http://www.cjluzzl.cn">www.cjluzzl.cn</a> 中国计量大学理学院 Power by cjluzzl 保留所有权利</span>
+                <span class="fl">2016-2017 <a href="https://www.cjluzzl.cn" style="color: #4d5559;">www.cjluzzl.cn</a> 中国计量大学理学院 Power by cjluzzl 保留所有权利</span>
                 <span class="fr">copyright &copy; 2016 ICP备案证书号：浙ICP备16012186号-2</span>
 			</div>
 		</div>

@@ -70,3 +70,13 @@ class AllowedUser(models.Model):
         verbose_name = u"允许学号"
         verbose_name_plural = verbose_name
 
+
+class FileStroe(models.Model):
+    file_name = models.CharField(max_length=100, verbose_name=u"文件名")
+    file_content = models.FileField(verbose_name=u"文件", upload_to="file/%Y/%m/%d")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"发布时间")
+    down_count = models.IntegerField(default=0, verbose_name=u"下载次数")
+
+    class Meta:
+        verbose_name = u"资料下载管理"
+        verbose_name_plural = verbose_name

@@ -58,7 +58,8 @@
                         {% csrf_token %}
                         <div class="form-group marb20 {% if register_form.errors.username %}errorput{% endif %}">
                             <label>用户名(学号)</label>
-                            <input  type="text" id="id_email" name="username"  value="{{ register_form.username.value }}"  placeholder="请输入您的学号" />
+                            <input type="text" id="id_email" name="username" value="{{ register_form.username.value }}"
+                                   placeholder="请输入您的学号"/>
                         </div>
                         <div class="form-group marb20 {% if register_form.errors.email %}errorput{% endif %}">
                             <label>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>

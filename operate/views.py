@@ -11,6 +11,7 @@ from .forms import QuestionFormChoice, QuestionFormJD, QuestionFormJudge
 from coures.models import Paper, Question, CourseList, PaperList
 from .models import UserAnswerLog, UserScore, UserNote
 from datetime import datetime
+from users.models import FileStroe
 
 
 class PaperListView(View):
@@ -58,8 +59,10 @@ class PaperView(View):
                 print 'paper is ', paper
                 question = Question.objects.get(pk=paper.question_id)
                 question_id_list.append(question.id)
+            # 找到该用户所有的做题记录
+            all_score = UserScore.objects.filter(user=request.user)
 
-            title = paper.paper_name
+            title = paper.paper_name.name
             # 分数记录
             user_score = UserScore()
             # 记录用户
@@ -82,17 +85,34 @@ class PaperView(View):
                 if temp_question.answer == user_ans:
                     temp_score += temp_question.score
                     print "试题", temp_question.id, "答案正确"
-
+            state = 0
             user_score.total = temp_score
-            user_score.save()
+            for i in all_score:
+                if i.paper.pk == int(paper_id):
+                    state = 1
+                    if temp_score > i.total:
+                        i.total = temp_score
+                        i.save()
+                        return render(request, "score.html", {"score": user_score.total, "title": title})
+                    else:
+                        return render(request, "score.html", {"score": user_score.total, "title": title})
+            if state == 0:
+                user_score.save()
             return render(request, "score.html", {"score": user_score.total, "title": title})
 
 
-class CourseListView(View):
-    def get(self, request):
-        return render(request, "online_course_list.html");
-
-
 class DownloadFunView(View):
-    def get(self, request):
-        return render(request, "download.html");
+    def get(self, request, page_number):
+        file_list = FileStroe.objects.all()
+        return render(request, "download.html", {"file_list": file_list})
+
+
+class DownAddView(View):
+    def post(self, request):
+        file_list = FileStroe.objects.all()
+        file_id = request.POST.get("file_id")
+        print "asdfsasdfasdf", file_id
+        file = FileStroe.objects.get(pk=file_id)
+        file.down_count += 1
+        file.save()
+        return render(request, "download.html", {"file_list": file_list})

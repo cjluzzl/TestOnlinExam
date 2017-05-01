@@ -22,7 +22,7 @@ from django.views.static import serve
 import xadmin
 from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, \
     ForgetPwdView, ResetView, ModifyPwdView, UserCenterView
-from operate.views import PaperView, PaperListView, CourseListView, DownloadFunView
+from operate.views import PaperView, PaperListView, DownloadFunView, DownAddView
 from TestOnlinExam.settings import MEDIA_ROOT, STATIC_ROOT, STATIC_URL
 from django.conf.urls.static import static
 
@@ -42,13 +42,12 @@ urlpatterns = [
     url(r'^paperlist/$', PaperListView.as_view(), name="paper_list"),
     # 配置媒体文件显示的view
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
-
-    url(r'course_list/$', CourseListView.as_view(), name="course_list_online_study"),
-    url(r'download_info/$', DownloadFunView.as_view(), name="download"),
+    url(r'download_info/(?P<page_number>.*)$', DownloadFunView.as_view(), name="download"),
+    url(r'downadd/$', DownAddView.as_view(), name="downadd"),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT}),
 ]  # + static(STATIC_URL, document_root=STATIC_ROOT)
 
 # 全局404页面配置
-handler404 = 'users.views.page_not_found';
+handler404 = 'users.views.page_not_found'
 # 全局500页面配置
-handler500 = 'users.views.page_error';
+handler500 = 'users.views.page_error'
