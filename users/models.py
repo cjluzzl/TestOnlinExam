@@ -23,7 +23,7 @@ class UserClass(models.Model):
 class UserProfile(AbstractUser):
     nick_name = models.CharField(max_length=50, verbose_name=u"姓名", default= "")
     birthday = models.DateField(verbose_name=u"生日", null=True, blank=True)
-    user_classname = models.ForeignKey(UserClass,verbose_name=u"班级名",default=1)
+    # user_classname = models.ForeignKey(UserClass,verbose_name=u"班级名",default=1)
     gender = models.CharField(max_length=6, choices=(('male', u"男"), ('female', u"女")), default="female")
     mobile = models.CharField(max_length=11, null=True, blank=True)
     image = models.ImageField(upload_to="static/images/head/%Y/%m", default="static/images/head/default.png", max_length=100)
@@ -63,11 +63,13 @@ class Banner(models.Model):
         verbose_name_plural = verbose_name
 
 
-class AllowedUser(models.Model):
-    username = models.CharField(max_length=10, verbose_name=u"学号")
+class ClassExcel(models.Model):
+    file = models.FileField(verbose_name=u"文件名", upload_to="file/class_excle")
+    add_time = models.DateField(default=datetime.now, verbose_name=u"添加时间")
+    is_add = models.BooleanField(default=False, verbose_name=u"是否被导入数据库")
 
     class Meta:
-        verbose_name = u"允许学号"
+        verbose_name = u"导入学生信息文件"
         verbose_name_plural = verbose_name
 
 

@@ -3,7 +3,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
-from .models import UserProfile, EmailRevifyRecord, AllowedUser
+from .models import UserProfile, EmailRevifyRecord
 from django.db.models import Q #支持后面的并集查询
 from django.views.generic.base import View
 from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm, UserInfoForm
