@@ -23,7 +23,7 @@ class UserClass(models.Model):
 class UserProfile(AbstractUser):
     nick_name = models.CharField(max_length=50, verbose_name=u"姓名", default= "")
     birthday = models.DateField(verbose_name=u"生日", null=True, blank=True)
-    # user_classname = models.ForeignKey(UserClass,verbose_name=u"班级名",default=1)
+    user_class = models.CharField(verbose_name=u"班级名", default=u"14信算2", max_length=20)
     gender = models.CharField(max_length=6, choices=(('male', u"男"), ('female', u"女")), default="female")
     mobile = models.CharField(max_length=11, null=True, blank=True)
     image = models.ImageField(upload_to="static/images/head/%Y/%m", default="static/images/head/default.png", max_length=100)
