@@ -9,9 +9,25 @@ from django.views.generic.base import View
 from .forms import LoginForm, RegisterForm, ForgetForm, ModifyPwdForm, UserInfoForm
 from django.contrib.auth.hashers import make_password
 from utils.send_mail import send_register_email
+from dwebsocket import require_websocket, accept_websocket
+
 
 title = "中国计量大学理学院在线考试系统"
 phoneNumber = "15068895421"
+
+
+def index(request):
+    return render(request, 'test_websocket.html')
+
+
+@require_websocket
+def echo_once(request):
+    print request.is_websocket()
+
+    message = request.websocket.wait()
+    print message, "sdfsdaf"
+
+    request.websocket.send("接收到数据了")
 
 
 #调试完成

@@ -25,6 +25,8 @@ from users.views import LoginView, LogoutView, RegisterView, ActiveUserView, \
 from operate.views import PaperView, PaperListView, DownloadFunView, DownAddView
 from TestOnlinExam.settings import MEDIA_ROOT, STATIC_ROOT, STATIC_URL
 from django.conf.urls.static import static
+from users.views import index, echo_once
+
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -45,6 +47,9 @@ urlpatterns = [
     url(r'download_info/(?P<page_number>.*)$', DownloadFunView.as_view(), name="download"),
     url(r'downadd/$', DownAddView.as_view(), name="downadd"),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT}),
+
+    url(r'^index/', index),
+    url(r'^echo_once/', echo_once),
 ]  # + static(STATIC_URL, document_root=STATIC_ROOT)
 
 # 全局404页面配置

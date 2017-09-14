@@ -27,7 +27,7 @@ SECRET_KEY = 'e6--c&!im-x91u^%fce)=+snq^r6vh3zz_ml+t(=2htfv!q5)_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['exam.cjluzzl.cn']
+ALLOWED_HOSTS = ['*']  # ['exam.cjluzzl.cn']
 
 #用于配置邮箱登陆
 AUTHENTICATION_BACKENDS =(
@@ -69,20 +69,24 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'dwebsocket.middleware.WebSocketMiddleware',
 ]
+
+# WEBSOCKET_ACCEPT_ALL = True
+
+#WEBSOCKET_FACTORY_CLASS = 'dwebsocket.backends.uwsgi.factory.uWsgiWebSocketFactory'
 
 ROOT_URLCONF = 'TestOnlinExam.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
