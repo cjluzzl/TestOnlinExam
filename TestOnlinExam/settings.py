@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'e6--c&!im-x91u^%fce)=+snq^r6vh3zz_ml+t(=2htfv!q5)_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['exam.cjluzzl.cn']
 
 #用于配置邮箱登陆
 AUTHENTICATION_BACKENDS =(
