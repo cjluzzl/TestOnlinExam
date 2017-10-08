@@ -109,7 +109,7 @@ DATABASES = {
         'HOST':'127.0.0.1',
         'NAME': 'testonlinexam',
         'USER': 'root',
-        'PASSWORD': '142857',
+        'PASSWORD': '你的密码',
         'PORT': '3306',
     }
 }
